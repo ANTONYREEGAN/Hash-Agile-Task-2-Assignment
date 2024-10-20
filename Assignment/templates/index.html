@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Employee Management</title>
+</head>
+<body>
+    <h1>Employee Management with Elasticsearch</h1>
+
+    <form action="/create_collection" method="POST">
+        <h2>Create Collections</h2>
+        <input type="text" name="name_collection" placeholder="Name Collection" required>
+        <input type="text" name="phone_collection" placeholder="Phone Collection" required>
+        <button type="submit">Create Collections</button>
+    </form>
+
+    <form action="/index_data" method="POST">
+        <h2>Index Data</h2>
+        <input type="text" name="collection_name" placeholder="Collection Name" required>
+        <input type="text" name="exclude_column" placeholder="Exclude Column" required>
+        <button type="submit">Index Data</button>
+    </form>
+
+    <form action="/get_emp_count" method="POST">
+        <h2>Get Employee Count</h2>
+        <input type="text" name="collection_name" placeholder="Collection Name" required>
+        <button type="submit">Get Count</button>
+    </form>
+
+    <form action="/search" method="POST">
+        <h2>Search Employee</h2>
+        <input type="text" name="collection_name" placeholder="Collection Name" required>
+        <input type="text" name="column_name" placeholder="Column Name" required>
+        <input type="text" name="column_value" placeholder="Column Value" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>
+
